@@ -1,0 +1,54 @@
+<div th:fragment="footer">
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Brand -->
+                <div class="col-md-4">
+                    <div class="footer-brand"> BOOKSHOP</div>
+                    <p class="footer-desc">
+                        Nền tảng mua sách trực tuyến hàng đầu Việt Nam.
+                        Cam kết sách chính hãng, giá tốt nhất thị trường.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#">📘</a>
+                        <a href="#">📷</a>
+                        <a href="#">🐦</a>
+                        <a href="#">📺</a>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div class="col-md-2">
+                    <div class="footer-title">Về chúng tôi</div>
+                    <ul class="footer-links">
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Tuyển dụng</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="footer-title">Hỗ trợ</div>
+                    <ul class="footer-links">
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản sử dụng</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="footer-title">Liên hệ</div>
+                    <ul class="footer-links">
+                        <li><a href="#">📍 Hà Nội, Việt Nam</a></li>
+                        <li><a href="#">📞 0123-456-789</a></li>
+                        <li><a href="#">✉️ info@bookshop.vn</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                © 2026 BookShop. All rights reserved. | Made with ❤️
+            </div>
+        </div>
+    </footer>
+</div>

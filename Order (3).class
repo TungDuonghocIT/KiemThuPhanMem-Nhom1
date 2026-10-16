@@ -1,0 +1,125 @@
+<div th:fragment="header">
+    <!-- Main Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 shadow">
+        <div class="container-fluid">
+            <!-- Logo -->
+			<a class="navbar-brand"
+			   th:href="@{/}">
+			    <img th:src="@{/images/logo.png}"
+			         alt="BOOKSHOP"
+			         height="50">
+			</a>
+
+            <!-- Hamburger Button for Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Search bar in center -->
+                <form class="d-flex mx-auto my-2 my-lg-0 w-50" th:action="@{/search}" method="get">
+                    <div class="input-group">
+                        <input class="form-control" 
+                               type="search" 
+                               name="keyword"
+                               th:value="${keyword}"
+                               placeholder="Tìm sách, tác giả..."
+                               aria-label="Search">
+                        <button class="btn btn-warning" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Nav Links & Auth -->
+                <div class="d-flex flex-column flex-lg-row align-items-lg-center gap-3 text-white">
+
+                    <!-- Đơn mua (visible when logged in) -->
+                    <a th:if="${session.loggedUser != null}" th:href="@{/order/history}" class="text-white text-decoration-none hover-link d-flex align-items-center gap-1">
+                        <i class="fa-solid fa-clipboard-list text-warning"></i> Đơn mua
+                    </a>
+
+                    <!-- Cart with count badge -->
+                    <a th:href="@{/cart}" class="text-white text-decoration-none hover-link position-relative d-flex align-items-center gap-1">
+                        <i class="fa-solid fa-cart-shopping text-warning"></i> Giỏ hàng
+                        <span th:if="${session.cartCount != null and session.cartCount > 0}" 
+                              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                              th:text="${session.cartCount}">
+                            0
+                        </span>
+                    </a>
+
+                    <!-- If Logged In -->
+                    <div th:if="${session.loggedUser != null}" class="dropdown">
+                        <a class="btn btn-outline-warning dropdown-toggle d-flex align-items-center gap-2" href="#" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> <span th:text="${session.loggedUser.fullname ?: session.username}">User</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="userDropdown">
+                            <li th:if="${#strings.equalsIgnoreCase(session.userRole, 'ADMIN')}">
+                                <a class="dropdown-item fw-bold text-primary" th:href="@{/admin/dashboard}">
+                                    <i class="fa-solid fa-gauge-high"></i> Admin Panel
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-danger" th:href="@{/auth/logout}">
+                                    <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- If Not Logged In -->
+                    <div th:if="${session.loggedUser == null}" class="d-flex gap-2">
+                        <a th:href="@{/auth/login}" class="btn btn-outline-light btn-sm px-3">Đăng nhập</a>
+                        <a th:href="@{/auth/register}" class="btn btn-warning btn-sm px-3 text-dark fw-bold">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sub Navigation Bar -->
+    <div class="sub-nav">
+        <div class="container-fluid">
+            <div class="sub-nav-inner">
+                <!-- Left: Navigation Links -->
+                <div class="sub-nav-links">
+                    <a th:href="@{/}" class="sub-nav-link">
+                        <i class="fa-solid fa-house"></i> Trang chủ
+                    </a>
+
+                    <!-- Category Dropdown -->
+                    <div class="dropdown sub-nav-dropdown">
+                        <a class="sub-nav-link dropdown-toggle" href="#" role="button" id="subNavCategoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-list-ul"></i> Danh mục
+                        </a>
+                        <ul class="dropdown-menu shadow border-0 sub-nav-dropdown-menu" aria-labelledby="subNavCategoryDropdown" style="max-height: 400px; overflow-y: auto;">
+                            <li><a class="dropdown-item" th:href="@{/}"><i class="fa-solid fa-book-open text-muted me-2"></i>Tất cả sách</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li th:each="cat : ${categories}">
+                                <a class="dropdown-item" th:href="@{/category/{id}(id=${cat.id})}" th:text="${cat.name}">Category</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <a th:href="@{/}" class="sub-nav-link">
+                        <i class="fa-solid fa-fire"></i> Sách mới
+                    </a>
+                    <a th:href="@{/}" class="sub-nav-link">
+                        <i class="fa-solid fa-star"></i> Bán chạy
+                    </a>
+                    <a th:href="@{/}" class="sub-nav-link">
+                        <i class="fa-solid fa-tags"></i> Khuyến mãi
+                    </a>
+                </div>
+
+                <!-- Right: Hotline -->
+                <div class="sub-nav-hotline d-none d-md-flex">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <span>Hotline: <strong>0123-456-789</strong></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

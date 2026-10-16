@@ -1,0 +1,74 @@
+/* ===== AUTHENTICATION PAGES CSS ===== */
+:root {
+    --primary: #6C5CE7;
+    --primary-dark: #5A4BD1;
+    --dark: #2D3436;
+    --light: #F8F9FA;
+    --bg-body: #F0F2F5;
+    --radius: 16px;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%) !important;
+    font-family: 'Inter', sans-serif;
+}
+
+.auth-container {
+    perspective: 1000px;
+}
+
+.card {
+    border-radius: var(--radius) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    transition: var(--transition);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+.auth-logo-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(108, 92, 231, 0.1);
+    color: var(--primary);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    animation: rotateLogo 8s linear infinite;
+}
+
+@keyframes rotateLogo {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.15);
+}
+
+.input-group-text {
+    background-color: #fff;
+    color: #b2bec3;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border: none;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-dark) 0%, #4834B5 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+}
+
+.hover-underline:hover {
+    text-decoration: underline !important;
+}
